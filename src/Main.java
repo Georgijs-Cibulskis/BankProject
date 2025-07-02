@@ -29,5 +29,6 @@ public class Main {
         bankAccount1.printBalance();
         bankAccount2.printBalance();
 
+        System.out.println("Work done");
     }
 }
