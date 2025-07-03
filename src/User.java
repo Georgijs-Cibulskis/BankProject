@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class User implements Serializable {
     private String username;
     private String passwordHash;  // store hash instead of plain password
-    private ArrayList<bankAccount> accounts;
+    private ArrayList<BankAccount> accounts;
     private static final long serialVersionUID = 1L;
 
     public User(String username, String password) {
@@ -25,16 +25,16 @@ public class User implements Serializable {
         return this.passwordHash.equals(hashedInput);
     }
 
-    public void addAccount(bankAccount acc) {
+    public void addAccount(BankAccount acc) {
         accounts.add(acc);
     }
 
-    public ArrayList<bankAccount> getAccounts() {
+    public ArrayList<BankAccount> getAccounts() {
         return accounts;
     }
 
-    public bankAccount findAccountById(int id) {
-        for (bankAccount acc : accounts) {
+    public BankAccount findAccountById(int id) {
+        for (BankAccount acc : accounts) {
             if (acc.getId() == id) return acc;
         }
         return null;

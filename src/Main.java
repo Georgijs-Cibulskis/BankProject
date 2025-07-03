@@ -61,7 +61,7 @@ public class Main {
                 }
             }
 
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USER_FILE))) {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USER_FILE, true))) {
                 oos.writeObject(users);
                 System.out.println("Users saved.");
             }
@@ -170,7 +170,7 @@ public class Main {
             double balance = scanner.nextDouble();
             scanner.nextLine(); // consume newline
 
-            bankAccount newAccount = new bankAccount(balance, accountName);
+            BankAccount newAccount = new BankAccount(balance, accountName);
             currentUser.addAccount(newAccount);
             System.out.println("Created account '" + accountName + "' with ID: " + newAccount.getId());
             saveUsersToFile();
@@ -183,12 +183,12 @@ public class Main {
         }
     }
 
-    private static bankAccount findAccountInCurrentUser() {
+    private static BankAccount findAccountInCurrentUser() {
         try {
             System.out.print("Enter account ID: ");
             int id = scanner.nextInt();
             scanner.nextLine(); // consume newline
-            bankAccount acc = currentUser.findAccountById(id);
+            BankAccount acc = currentUser.findAccountById(id);
             if (acc == null) {
                 System.out.println("Account with ID " + id + " not found.");
             }
@@ -201,7 +201,7 @@ public class Main {
     }
 
     private static void depositToAccount() {
-        bankAccount acc = findAccountInCurrentUser();
+        BankAccount acc = findAccountInCurrentUser();
         if (acc != null) {
             try {
                 System.out.print("Enter deposit amount: ");
@@ -221,7 +221,7 @@ public class Main {
     }
 
     private static void withdrawFromAccount() {
-        bankAccount acc = findAccountInCurrentUser();
+        BankAccount acc = findAccountInCurrentUser();
         if (acc != null) {
             try {
                 System.out.print("Enter withdrawal amount: ");
@@ -242,7 +242,7 @@ public class Main {
 
     private static void transferBetweenAccounts() {
         System.out.print("Sender account - ");
-        bankAccount sender = findAccountInCurrentUser();
+        BankAccount sender = findAccountInCurrentUser();
         if (sender == null) return;
 
         System.out.print("Receiver account (enter account ID): ");
@@ -257,10 +257,10 @@ public class Main {
         }
 
         // Search receiver account among all users:
-        bankAccount receiver = null;
+        BankAccount receiver = null;
         outer:
         for (User u : users) {
-            for (bankAccount a : u.getAccounts()) {
+            for (BankAccount a : u.getAccounts()) {
                 if (a.getId() == receiverId) {
                     receiver = a;
                     break outer;
@@ -290,18 +290,18 @@ public class Main {
     }
 
     private static void printAccountInfo() {
-        bankAccount acc = findAccountInCurrentUser();
+        BankAccount acc = findAccountInCurrentUser();
         if (acc != null) {
             acc.printBalance();
         }
     }
 
     private static void listAllAccounts() {
-        ArrayList<bankAccount> accs = currentUser.getAccounts();
+        ArrayList<BankAccount> accs = currentUser.getAccounts();
         if (accs.isEmpty()) {
             System.out.println("No accounts found.");
         } else {
-            for (bankAccount acc : accs) {
+            for (BankAccount acc : accs) {
                 System.out.println(acc);
             }
         }
@@ -326,5 +326,3 @@ public class Main {
         currentUser = null;
     }
 }
-
-

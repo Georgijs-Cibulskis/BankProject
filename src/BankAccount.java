@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class bankAccount implements Serializable {
+public class BankAccount implements Serializable {
 
     private static int nextId = 1;  // static counter to generate unique IDs
     private static final long serialVersionUID = 1L;
@@ -9,14 +9,14 @@ public class bankAccount implements Serializable {
     private double balance;
 
     // Default constructor
-    public bankAccount() {
+    public BankAccount() {
         this.id = nextId++;
         this.name = "Unnamed";
         this.balance = 0;
     }
 
     // Constructor with balance and name
-    public bankAccount(double balance, String name) {
+    public BankAccount(double balance, String name) {
         this.id = nextId++;
         setBalance(balance);
         this.name = name;
@@ -52,7 +52,7 @@ public class bankAccount implements Serializable {
         System.out.println("Current balance: " + this.balance);
     }
 
-    public void transferMoney(bankAccount receiver, double amount) {
+    public void transferMoney(BankAccount receiver, double amount) {
         if (this.balance >= amount) {
             this.withdraw(amount);
             receiver.deposit(amount);
