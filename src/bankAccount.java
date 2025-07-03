@@ -1,7 +1,9 @@
-public class bankAccount {
+import java.io.Serializable;
+
+public class bankAccount implements Serializable {
 
     private static int nextId = 1;  // static counter to generate unique IDs
-
+    private static final long serialVersionUID = 1L;
     private int id;
     private String name;
     private double balance;
@@ -46,7 +48,7 @@ public class bankAccount {
 
     public void printBalance() {
         System.out.println("Account ID: " + this.id);
-        System.out.println("Owner: " + this.name);
+        System.out.println("Account name: " + this.name);
         System.out.println("Current balance: " + this.balance);
     }
 
