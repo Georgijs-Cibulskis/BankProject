@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mainFiles.BankAccountTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-07-04T12:36:42.628Z" hostname="DESKTOP-4S8ROBO" time="0.048">
+  <properties/>
+  <testcase name="testWithdrawValidAmount()" classname="mainFiles.BankAccountTest" time="0.017"/>
+  <testcase name="testAccountCreation()" classname="mainFiles.BankAccountTest" time="0.002"/>
+  <testcase name="testToString()" classname="mainFiles.BankAccountTest" time="0.008"/>
+  <testcase name="testWithdrawInsufficientBalance()" classname="mainFiles.BankAccountTest" time="0.002"/>
+  <testcase name="testTransferInsufficientFunds()" classname="mainFiles.BankAccountTest" time="0.003"/>
+  <testcase name="testTransferMoney()" classname="mainFiles.BankAccountTest" time="0.001"/>
+  <testcase name="testDepositNegativeAmount()" classname="mainFiles.BankAccountTest" time="0.001"/>
+  <testcase name="testDepositPositiveAmount()" classname="mainFiles.BankAccountTest" time="0.001"/>
+  <testcase name="testWithdrawNegativeAmount()" classname="mainFiles.BankAccountTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

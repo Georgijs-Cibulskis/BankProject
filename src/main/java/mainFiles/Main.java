@@ -1,3 +1,6 @@
+package mainFiles;
+
+import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -11,10 +14,9 @@ import java.io.IOException;
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static ArrayList<User> users = new ArrayList<>();
+    private static HashSet<User> users = new HashSet<>();
     private static User currentUser = null;
     private static final String USER_FILE = "StoringFiles" + File.separator + "Users.txt";
-
 
     public static void main(String[] args) {
         try {
@@ -37,16 +39,16 @@ public class Main {
     private static void loadUsersFromFile() {
         File file = new File(USER_FILE);
         if (!file.exists()) {
-            users = new ArrayList<>();
+            users = new HashSet<>();
             return;
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            users = (ArrayList<User>) ois.readObject();
+            users = (HashSet<User>) ois.readObject();
             System.out.println("Loaded users from file.");
         } catch (Exception e) {
             System.out.println("Could not load users: " + e.getMessage());
-            users = new ArrayList<>();
+            users = new HashSet<>();
         }
     }
 
@@ -61,7 +63,7 @@ public class Main {
                 }
             }
 
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USER_FILE, true))) {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USER_FILE))) {
                 oos.writeObject(users);
                 System.out.println("Users saved.");
             }
@@ -306,19 +308,6 @@ public class Main {
             }
         }
     }
-
-//    private static void saveAccountsToFile() {
-//        String filename = currentUser.getUsername() + "_accounts.csv";
-//        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-//            writer.println("AccountID,Owner,Balance");
-//            for (bankAccount acc : currentUser.getAccounts()) {
-//                writer.printf("%d,%s,%.2f%n", acc.getId(), acc.getName(), acc.getBalance());
-//            }
-//            System.out.println("Accounts saved to file: " + filename);
-//        } catch (IOException e) {
-//            System.out.println("Error saving accounts to file: " + e.getMessage());
-//        }
-//    }
 
     private static void logout() {
         System.out.println("User " + currentUser.getUsername() + " logged out.");

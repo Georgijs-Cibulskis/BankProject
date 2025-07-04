@@ -1,12 +1,18 @@
+package mainFiles;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class User implements Serializable {
-    private String username;
-    private String passwordHash;  // store hash instead of plain password
+
+    private final String username;
+    private final String passwordHash;  // store hash instead of plain password
     private ArrayList<BankAccount> accounts;
+    @Serial
     private static final long serialVersionUID = 1L;
 
     public User(String username, String password) {
@@ -62,4 +68,18 @@ public class User implements Serializable {
             throw new RuntimeException("SHA-256 algorithm not found.");
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        User user = (User) obj;
+        return username.equals(user.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username);
+    }
+
 }

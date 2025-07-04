@@ -1,3 +1,5 @@
+package mainFiles;
+
 import java.io.Serializable;
 
 public class BankAccount implements Serializable {
